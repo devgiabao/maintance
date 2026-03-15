@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống đang bảo trì - LegalMindAI</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        legal: {
+                            900: '#0A1628',
+                            800: '#152338',
+                            700: '#24344d',
+                            accent: '#C5B358',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-spin-slow {
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="bg-legal-900 text-slate-200 font-sans h-screen flex flex-col overflow-hidden transition-colors duration-300">
+
+    <!-- Header -->
+    <header
+        class="flex items-center justify-between p-4 border-b border-legal-800 bg-legal-900/95 sticky top-0 backdrop-blur z-10">
+        <div class="flex items-center gap-4">
+            <span class="font-serif font-bold text-lg md:text-xl text-slate-100">LegalMindAI VN</span>
+        </div>
+        <div class="text-sm text-slate-400">
+            Hệ Thống Trợ Lý Pháp Lý AI
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main
+        class="flex-1 flex flex-col items-center justify-center p-6 sm:p-8 text-center animate-fade-in h-full relative w-full">
+        <!-- Icon -->
+        <div
+            class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl flex items-center justify-center mb-6 sm:mb-8 shadow-2xl border bg-legal-800 border-legal-700">
+            <i data-lucide="settings" class="w-10 h-10 sm:w-12 sm:h-12 text-legal-accent animate-spin-slow"></i>
+        </div>
+
+        <!-- Heading -->
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-serif font-bold mb-4 text-slate-100 placeholder-opacity-90">
+            Hệ thống đang bảo trì
+        </h2>
+
+        <!-- Message -->
+        <p class="max-w-xl text-base sm:text-lg md:text-xl mb-8 leading-relaxed text-slate-400">
+            LegalMindAI là dự án tham gia cuộc thi Nghiên cứu Khoa học Kĩ thuật cấp Tỉnh Cà Mau.
+            <br class="hidden sm:block" />Chúng tôi đang
+            tiến hành cập nhật và nâng cấp hệ thống để mang lại phiên bản tốt nhất cho cuộc thi tiếp theo. Vui lòng quay
+            lại trong thời gian sớm nhất.
+        </p>
+
+        <!-- Status Box -->
+        <div
+            class="p-4 sm:p-6 border rounded-xl bg-legal-800/50 hover:bg-legal-800 transition-colors border-legal-700 text-slate-300 max-w-md w-full shadow-lg">
+            <div class="flex items-center justify-center gap-2 mb-2 sm:mb-3">
+                <i data-lucide="clock" class="w-5 h-5 text-legal-accent"></i>
+                <span class="font-medium text-sm sm:text-base">Thời gian dự kiến cập nhật:</span>
+            </div>
+            <div class="flex justify-center gap-2 sm:gap-4 text-legal-accent font-bold mt-2">
+                <div class="flex flex-col items-center">
+                    <span id="days" class="text-2xl sm:text-3xl">00</span>
+                    <span class="text-xs text-slate-400 font-normal uppercase tracking-wider mt-1">Ngày</span>
+                </div>
+                <span class="text-2xl sm:text-3xl">:</span>
+                <div class="flex flex-col items-center">
+                    <span id="hours" class="text-2xl sm:text-3xl">00</span>
+                    <span class="text-xs text-slate-400 font-normal uppercase tracking-wider mt-1">Giờ</span>
+                </div>
+                <span class="text-2xl sm:text-3xl">:</span>
+                <div class="flex flex-col items-center">
+                    <span id="minutes" class="text-2xl sm:text-3xl">00</span>
+                    <span class="text-xs text-slate-400 font-normal uppercase tracking-wider mt-1">Phút</span>
+                </div>
+                <span class="text-2xl sm:text-3xl">:</span>
+                <div class="flex flex-col items-center">
+                    <span id="seconds" class="text-2xl sm:text-3xl">00</span>
+                    <span class="text-xs text-slate-400 font-normal uppercase tracking-wider mt-1">Giây</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Script for rendering icons -->
+    <script>
+        lucide.createIcons();
+
+        // Cấu hình thời gian đếm ngược (Mặc định: 24h)
+        // Thay đổi sang thời điểm cụ thể: const targetDate = new Date("2026-03-20T00:00:00");
+        const targetDate = new Date("2026-04-01T00:00:00");
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const distance = targetDate.getTime() - now;
+
+            if (distance < 0) {
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
+</body>
+
+</html>
